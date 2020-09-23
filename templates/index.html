@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main role="main" class="inner cover">
+    <h1 class="cover-heading">LOCADORA</h1>
+    {% if titulos|length < 1 %}
+    <p>There is nothing to buy for now.</p>
+    {% else %}
+    <table>
+        <thead>
+            <tr>
+                <th>Títulos</th>
+                <th>Adcionado</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for titulo in titulos %}
+            <tr>
+                <td><a href="">{{ titulo.name }} </a></td>
+                <td>{{ titulo.created_at.date() }} </td>
+                <td><a class="btn btn-danger btn-sm" href="/delete/{{ titulo.id }}" role="butto">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br><br>
+    {% endif %}
+
+    <form action="/" method="POST">
+        <label for="newStuff">Novo Filme:</label>
+        <input type="text" name="name" id="newStuff">
+        <button type="submit">ADICIONAR</button>   
+    </form>
+</main>
+{% endblock %}
